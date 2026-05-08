@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name" translatable="false">DungeonDelverApp</string>
+    <string name="listsButton">Lists</string>
+    <string name="classes">Classes</string>
+    <string name="ancestries">Ancestries</string>
+    <string name="backgrounds">Backgrounds</string>
+    <string name="subclasses">Subclasses</string>
+    <string name="items">Items</string>
+    <string name="barbarian">Barbarian</string>
+    <string name="artificer">Artificer</string>
+    <string name="bard">Bard</string>
+    <string name="bastion">Bastion</string>
+    <string name="mechanic">Mechanic</string>
+    <string name="wrestler">Wrestler</string>
+</resources>

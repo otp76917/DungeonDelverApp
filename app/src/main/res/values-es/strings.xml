@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="listsButton">Listas</string>
+    <string name="classes">Clases</string>
+    <string name="ancestries">Linajes</string>
+    <string name="backgrounds">Trasfondos</string>
+    <string name="subclasses">Subclases</string>
+    <string name="items">Objetos</string>
+    <string name="barbarian">Bárbaro</string>
+    <string name="artificer">Artificiero</string>
+    <string name="bard">Bardo</string>
+    <string name="bastion">Bastión</string>
+    <string name="mechanic">Mecánico</string>
+    <string name="wrestler">Luchador</string>
+</resources>
