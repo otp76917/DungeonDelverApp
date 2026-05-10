@@ -1,8 +1,7 @@
 package com.example.dungeondelverapp.items
 
-import com.example.dungeondelverapp.db.enums.ProfileEnum
 
 object CurrentSession {
-    var user = 0
-    var profile = ProfileEnum.GUEST
+    var user:Long = 0
+    var gm:Boolean = false
 }

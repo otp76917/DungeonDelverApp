@@ -1,21 +1,18 @@
 package com.example.dungeondelverapp.db
 
-import com.example.dungeondelverapp.db.enums.AncestriesEnum
-import com.example.dungeondelverapp.db.enums.BackgroundsEnum
-import com.example.dungeondelverapp.db.enums.ClassesEnum
-import com.example.dungeondelverapp.db.enums.SpeciesEnum
-import com.example.dungeondelverapp.db.enums.SubclassesEnum
 import io.objectbox.annotation.Entity
+import io.objectbox.annotation.Id
 
 @Entity
 data class Character(
+    @Id var id: Long,
     var name: String,
     var level: Int,
-    var mainClass: ClassesEnum,
-    var subclass: SubclassesEnum,
-    var background: BackgroundsEnum,
-    var ancestry1: AncestriesEnum,
-    var ancestry2: AncestriesEnum?,
-    var species1: SpeciesEnum,
-    var species2: SpeciesEnum?,
+    var mainClass: Int,
+    var subclass: Int,
+    var background: Int,
+    var ancestry1: Int,
+    var ancestry2: Int?,
+    var species1: Int,
+    var species2: Int?,
 )

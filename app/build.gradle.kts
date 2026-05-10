@@ -1,8 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.objectbox)
+
+    id("kotlin-kapt")
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.objectbox)
 }
 
 android {
@@ -38,6 +40,11 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    objectbox {
+
+    }
+
 }
 
 dependencies {
@@ -52,6 +59,7 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.ads.mobile.sdk)
     implementation("androidx.navigation:navigation-compose:2.9.7")
+    //implementation(libs.objectbox.browser)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

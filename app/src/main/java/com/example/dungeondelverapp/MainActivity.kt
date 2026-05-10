@@ -14,6 +14,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.dungeondelverapp.items.ListViewModel
 import com.example.dungeondelverapp.ui.theme.DungeonDelverAppTheme
+import com.example.dungeondelverapp.views.DualAuthScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +27,7 @@ class MainActivity : ComponentActivity() {
             }
 
             DungeonDelverAppTheme {
-                BottomButtonScreen()
+                DualAuthScreen()
             }//BottomButtonScreen()
         }
     }
