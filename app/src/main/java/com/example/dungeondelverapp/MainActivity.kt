@@ -7,6 +7,10 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
@@ -16,6 +20,8 @@ import com.example.dungeondelverapp.items.ListViewModel
 import com.example.dungeondelverapp.ui.theme.DungeonDelverAppTheme
 import com.example.dungeondelverapp.views.DualAuthScreen
 
+
+var logged by mutableStateOf(false)
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,24 +33,12 @@ class MainActivity : ComponentActivity() {
             }
 
             DungeonDelverAppTheme {
-                DualAuthScreen()
+                when (logged) {
+                    false -> DualAuthScreen()
+                    true -> BottomButtonScreen()
+                }
             }//BottomButtonScreen()
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    DungeonDelverAppTheme {
-        Greeting("Android")
-    }
-}

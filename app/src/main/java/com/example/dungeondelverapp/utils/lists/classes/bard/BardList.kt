@@ -5,9 +5,12 @@ import com.example.dungeondelverapp.R
 import com.example.dungeondelverapp.items.DashboardItem
 import com.example.dungeondelverapp.items.ListViewModel
 
+
+val bardHeader = listOf(DashboardItem.Header(MyApp.appContext.getString(R.string.bard).uppercase()))
+
 val bardTraitList = listOf(
 
-    DashboardItem.Header(MyApp.appContext.getString(R.string.bard).uppercase())
+    DashboardItem.CharacterTrait("Test Trait", "Test Description",0)
 
 )
 
@@ -18,6 +21,6 @@ val subclassButton = listOf(
         onClick = { ListViewModel.updateCurrentList(R.string.subclasses-R.string.bard) }
     ),
 
-    )
+)
 
-val bardList = bardTraitList + subclassButton
+val bardList = bardHeader + bardTraitList + subclassButton

@@ -9,14 +9,18 @@ class MyApp : Application() {
 
     companion object {
         lateinit var appContext: Context
-        lateinit var boxStore: BoxStore
+        lateinit var store: BoxStore
+
+        fun initDB() {
+            store = MyObjectBox.builder()
+                .androidContext(appContext)
+                .build()
+        }
     }
 
     override fun onCreate() {
         super.onCreate()
         appContext = applicationContext
-        boxStore = MyObjectBox.builder()
-            .androidContext(this)
-            .build()
+        initDB()
     }
 }

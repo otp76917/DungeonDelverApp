@@ -5,9 +5,10 @@ import com.example.dungeondelverapp.R
 import com.example.dungeondelverapp.items.DashboardItem
 import com.example.dungeondelverapp.items.ListViewModel
 
-val barbarianTraitList = listOf(
 
-    DashboardItem.Header(MyApp.appContext.getString(R.string.barbarian).uppercase()),
+val barbarianHeader = listOf(DashboardItem.Header(MyApp.appContext.getString(R.string.barbarian).uppercase()))
+
+val barbarianTraitList = listOf(
 
     DashboardItem.CharacterTrait("Hit Die", "12", 0),
     DashboardItem.CharacterTrait("Speed", "30", 0)
@@ -23,7 +24,7 @@ val subclassButton = listOf(
 
 )
 
-val barbarianList = barbarianTraitList + subclassButton
+val barbarianList = barbarianHeader + barbarianTraitList + subclassButton
 
 val barbarianSubclassList = listOf(
 

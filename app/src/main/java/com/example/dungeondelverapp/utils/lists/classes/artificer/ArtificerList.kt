@@ -5,9 +5,12 @@ import com.example.dungeondelverapp.R
 import com.example.dungeondelverapp.items.DashboardItem
 import com.example.dungeondelverapp.items.ListViewModel
 
+
+val artificerHeader = listOf(DashboardItem.Header(MyApp.appContext.getString(R.string.artificer).uppercase()))
+
 val artificerTraitList = listOf(
 
-    DashboardItem.Header(MyApp.appContext.getString(R.string.artificer).uppercase())
+    DashboardItem.CharacterTrait("Test Trait", "Test Description",0)
 
 )
 
@@ -20,7 +23,7 @@ val subclassButton = listOf(
 
 )
 
-val artificerList = artificerTraitList + subclassButton
+val artificerList = artificerHeader + artificerTraitList + subclassButton
 
 val artificerSubclassList = listOf(
 

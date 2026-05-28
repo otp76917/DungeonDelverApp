@@ -8,7 +8,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.dungeondelverapp.db.methods.loginMethod
+import com.example.dungeondelverapp.db.methods.registerMethod
 
+
+var boolean = false
 @Composable
 fun DualAuthScreen() {
     var loginUsername by remember { mutableStateOf("") }
@@ -34,7 +38,7 @@ fun DualAuthScreen() {
             value = loginUsername,
             onValueChange = { loginUsername = it },
             buttonText = "Enter Profile",
-            onAction = { /* Logic: Load existing local profile */ }
+            onAction = { loginMethod(loginUsername) }
         )
 
         Spacer(modifier = Modifier.height(32.dp))
@@ -50,7 +54,7 @@ fun DualAuthScreen() {
             value = registerUsername,
             onValueChange = { registerUsername = it },
             buttonText = "Create New Profile",
-            onAction = { /* Logic: Save new local profile */ }
+            onAction = { registerMethod(registerUsername, boolean) }
         )
     }}
 }
@@ -89,6 +93,7 @@ fun RegisterSection(
 
                 onCheckedChange = { newValue ->
                     isChecked = newValue
+                    boolean = newValue
                 }
             )
         }

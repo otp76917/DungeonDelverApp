@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">DungeonDelverApp</string>
+    <string name="app_name" translatable="false">DungeonDelverManager</string>
     <string name="listsButton">Lists</string>
     <string name="classes">Classes</string>
     <string name="ancestries">Ancestries</string>
@@ -12,4 +12,10 @@
     <string name="bastion">Bastion</string>
     <string name="mechanic">Mechanic</string>
     <string name="wrestler">Wrestler</string>
+    <string name="user_not_found">User not found.</string>
+    <string name="user_exists">User already exists.</string>
+    <string name="account">Account</string>
+    <string name="create_character">Create Character</string>
+    <string name="done">Done</string>
+    <string name="name">Name</string>
 </resources>

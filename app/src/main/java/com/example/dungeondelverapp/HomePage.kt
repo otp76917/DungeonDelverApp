@@ -48,7 +48,7 @@ fun BottomButtonScreen() {
                         containerColor = MaterialTheme.colorScheme.secondary
                     )
                 ) {
-                    Text("Button 2")
+                    Text(stringResource(id = R.string.account))
                 }
             }
         }
