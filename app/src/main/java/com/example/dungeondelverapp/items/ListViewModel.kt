@@ -28,6 +28,7 @@ import com.example.dungeondelverapp.utils.myDashboardItems
 import com.example.dungeondelverapp.views.CharacterCard
 import com.example.dungeondelverapp.views.CharacterComponent
 import com.example.dungeondelverapp.views.MainList
+import com.example.dungeondelverapp.views.SquareTable
 
 object ListViewModel : ViewModel() {
 
@@ -59,7 +60,12 @@ object ListViewModel : ViewModel() {
             0 -> MainList(mainList)
 
             //User screen
-            1 -> CharacterComponent()
+            1 -> {
+                if (CurrentSession.gm)
+                    SquareTable()
+                else
+                    CharacterComponent()
+            }
 
             //Lists
             R.string.classes -> MainList(classesList)
