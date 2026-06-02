@@ -1,6 +1,7 @@
 package com.example.dungeondelverapp.views
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -14,6 +15,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.dungeondelverapp.db.MapCell
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SquareTable(modifier: Modifier = Modifier) {
     var rowsInput by remember { mutableStateOf("") }
@@ -21,6 +23,9 @@ fun SquareTable(modifier: Modifier = Modifier) {
 
     val rows = rowsInput.toIntOrNull() ?: 0
     val cols = colsInput.toIntOrNull() ?: 0
+
+    // State to track which cell index is being edited (null means dialog is closed)
+    var editingCellIndex by remember { mutableStateOf<Int?>(null) }
 
     Column(
         modifier = modifier
@@ -51,15 +56,15 @@ fun SquareTable(modifier: Modifier = Modifier) {
 
         // Table Render Area
         if (rows > 0 && cols > 0) {
-            // Generating dummy/initial state data based on dimensions
+            // Using mutableStateListOf so Compose detects updates to individual elements
             val tableData = remember(rows, cols) {
-                List(rows * cols) { index ->
-                    MapCell(
-                        height = index + 1,
-                        cover = when (index % 3) {
-                            0 -> "none"
-                            1 -> "half"
-                            else -> "full"
+                mutableStateListOf<MapCell>().apply {
+                    addAll(
+                        List(rows * cols) { index ->
+                            MapCell(
+                                height = 0,
+                                cover = "none"
+                            )
                         }
                     )
                 }
@@ -76,9 +81,79 @@ fun SquareTable(modifier: Modifier = Modifier) {
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 items(tableData.size) { index ->
-                    TableCell(cell = tableData[index])
+                    TableCell(
+                        cell = tableData[index],
+                        modifier = Modifier.clickable {
+                            editingCellIndex = index // Open dialog for this cell
+                        }
+                    )
                 }
             }
+
+            // --- Edit Cell Dialog ---
+            editingCellIndex?.let { index ->
+                val cellToEdit = tableData[index]
+
+                // Dialog local states initialized with current cell values
+                var editHeight by remember { mutableStateOf(cellToEdit.height.toString()) }
+                var editCover by remember { mutableStateOf(cellToEdit.cover) }
+
+                AlertDialog(
+                    onDismissRequest = { editingCellIndex = null },
+                    title = { Text(text = "Edit Cell #${index + 1}") },
+                    text = {
+                        Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                            OutlinedTextField(
+                                value = editHeight,
+                                onValueChange = { editHeight = it },
+                                label = { Text("Height") },
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                                modifier = Modifier.fillMaxWidth()
+                            )
+
+                            Text("Cover Type:", style = MaterialTheme.typography.bodyMedium)
+
+                            // Simple radio buttons for selection
+                            val coverOptions = listOf("none", "half", "full")
+                            coverOptions.forEach { option ->
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clickable { editCover = option }
+                                        .padding(vertical = 4.dp)
+                                ) {
+                                    RadioButton(
+                                        selected = (editCover == option),
+                                        onClick = { editCover = option }
+                                    )
+                                    Spacer(modifier = Modifier.width(8.dp))
+                                    Text(text = option.replaceFirstChar { it.uppercase() })
+                                }
+                            }
+                        }
+                    },
+                    confirmButton = {
+                        Button(
+                            onClick = {
+                                val targetHeight = editHeight.toIntOrNull() ?: cellToEdit.height
+
+                                // Update data source; resetting the element forces grid recomposition
+                                tableData[index] = MapCell(height = targetHeight, cover = editCover)
+                                editingCellIndex = null
+                            }
+                        ) {
+                            Text("Save")
+                        }
+                    },
+                    dismissButton = {
+                        TextButton(onClick = { editingCellIndex = null }) {
+                            Text("Cancel")
+                        }
+                    }
+                )
+            }
+
         } else {
             Box(
                 modifier = Modifier

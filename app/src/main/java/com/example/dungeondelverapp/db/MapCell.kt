@@ -1,6 +1,6 @@
 package com.example.dungeondelverapp.db
 
-class MapCell (
+data class MapCell (
     var height: Int,
     var cover: String
 ) {
