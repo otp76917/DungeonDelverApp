@@ -41,8 +41,7 @@ fun reset(profileViewModel: ProfileViewModel = viewModel()) : ProfileViewModel
 @Composable
 fun CharacterComponent()
 {
-
-
+    reset()
 
     if (creating) {
         CharacterCreator()
@@ -51,7 +50,6 @@ fun CharacterComponent()
         CharacterPage(characterToView)
     }
     else {
-        ListViewModel.updateCurrentList(1)
         CharacterList(characters = reset().characterList)
     }
 }
