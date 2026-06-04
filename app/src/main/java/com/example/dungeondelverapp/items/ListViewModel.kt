@@ -35,7 +35,7 @@ object ListViewModel : ViewModel() {
     var currentList by mutableIntStateOf(0)
         private set
 
-    val screenList = mutableListOf(0)
+    var screenList = mutableListOf(0)
 
 
 

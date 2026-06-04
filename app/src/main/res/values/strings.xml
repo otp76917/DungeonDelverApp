@@ -18,4 +18,5 @@
     <string name="create_character">Create Character</string>
     <string name="done">Done</string>
     <string name="name">Name</string>
+    <string name="log_out" translatable="false">Log out</string>
 </resources>

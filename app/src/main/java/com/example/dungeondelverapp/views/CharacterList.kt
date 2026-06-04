@@ -28,13 +28,21 @@ var creating by mutableStateOf(false)
 var viewing by mutableStateOf(false)
 
 @Composable
-fun CharacterComponent(profileViewModel: ProfileViewModel = viewModel())
+fun reset(profileViewModel: ProfileViewModel = viewModel()) : ProfileViewModel
 {
     LaunchedEffect(creating, viewing) {
         if (!creating && !viewing) {
             profileViewModel.getAllCharacters(CurrentSession.user)
         }
     }
+    return profileViewModel
+}
+
+@Composable
+fun CharacterComponent()
+{
+
+
 
     if (creating) {
         CharacterCreator()
@@ -43,7 +51,8 @@ fun CharacterComponent(profileViewModel: ProfileViewModel = viewModel())
         CharacterPage(characterToView)
     }
     else {
-        CharacterList(characters = profileViewModel.characterList)
+        ListViewModel.updateCurrentList(1)
+        CharacterList(characters = reset().characterList)
     }
 }
 
