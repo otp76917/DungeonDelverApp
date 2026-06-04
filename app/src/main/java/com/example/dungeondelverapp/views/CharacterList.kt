@@ -96,7 +96,6 @@ fun CharacterPage(character: CharacterDB) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         LazyColumn(
             modifier = Modifier.weight(1f),
@@ -107,7 +106,12 @@ fun CharacterPage(character: CharacterDB) {
                 TextDisplay(trait)
             }
         }
-        Button(onClick = { viewing = false }) { Text(text = stringResource(R.string.done)) }
+        Box(
+            modifier = Modifier.fillMaxWidth(),
+            contentAlignment = Alignment.Center
+        ) {
+            Button(onClick = { viewing = false },) { Text(text = stringResource(R.string.done)) }
+        }
     }
 
 }
