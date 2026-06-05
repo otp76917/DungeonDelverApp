@@ -14,6 +14,7 @@ import androidx.compose.ui.res.stringResource
 import com.example.dungeondelverapp.db.methods.ProfileViewModel
 import com.example.dungeondelverapp.items.CurrentSession
 import com.example.dungeondelverapp.items.ListViewModel
+import com.example.dungeondelverapp.views.boolean
 import com.example.dungeondelverapp.views.reset
 
 @Composable
@@ -57,7 +58,7 @@ fun BottomButtonScreen() {
         },
         topBar = {
             Button(
-                onClick = { logged = false ; ListViewModel.screenList = mutableListOf(0) ; ListViewModel.updateCurrentList(0) },
+                onClick = { logged = false ; boolean = false ; ListViewModel.screenList = mutableListOf(0) ; ListViewModel.updateCurrentList(0) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(90.dp),
@@ -75,7 +76,7 @@ fun BottomButtonScreen() {
         ) {
             ListViewModel.ListDisplay()
             reset()
-
+            boolean = false
         //ItemList(myDashboardItems)
         }
     }
