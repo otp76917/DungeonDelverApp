@@ -3,6 +3,7 @@ package com.example.dungeondelverapp.views
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -33,6 +34,7 @@ fun MainList(items: List<DashboardItem>)
                 is DashboardItem.UserProfile -> ProfileView(item)
                 is DashboardItem.ActionButton -> ClickableLabel(item)
                 is DashboardItem.CharacterTrait -> TextDisplay(item)
+                is DashboardItem.Spell -> SpellView(item)
                 else -> {}
             }
         }
@@ -59,12 +61,14 @@ fun ProfileView(item: DashboardItem.UserProfile) {
 }
 
 @Composable
-fun ActionView(item: DashboardItem.ActionButton) {
-    Button(
-        onClick = item.onClick,
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        Text(text = item.label)
+fun SpellView(item: DashboardItem.Spell) {
+    Card(elevation = CardDefaults.cardElevation(), modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(text = item.name, style = MaterialTheme.typography.titleLarge)
+            for (option in item.options) {
+                Text(text = "AP: ${option.ap}, MP: ${option.mp}:\n ${option.description}")
+            }
+        }
     }
 }
 
@@ -83,13 +87,11 @@ fun ClickableLabel(item: DashboardItem.ActionButton)
 @Composable
 fun TextDisplay(item: DashboardItem.CharacterTrait)
 {
+    Spacer(modifier = Modifier.padding(vertical = 8.dp))
     Text(
         text = item.name,
-        style = MaterialTheme.typography.titleSmall,
+        style = MaterialTheme.typography.titleMedium,
     )
-    //Card(elevation = CardDefaults.cardElevation(), modifier = Modifier.fillMaxWidth()) {
-        //Column(modifier = Modifier.padding(8.dp)) {
-            Text(text = item.description, style = MaterialTheme.typography.labelMedium, modifier = Modifier.padding(vertical = 8.dp))
-        //}
-    //}
+    Text(text = item.description, /*style = MaterialTheme.typography.labelMedium,*/ modifier = Modifier.padding(vertical = 8.dp))
+    Spacer(modifier = Modifier.padding(vertical = 8.dp))
 }

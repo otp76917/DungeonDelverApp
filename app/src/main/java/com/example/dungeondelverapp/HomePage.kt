@@ -21,7 +21,7 @@ import com.example.dungeondelverapp.views.reset
 fun BottomButtonScreen() {
 
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().statusBarsPadding(),
         bottomBar = {
             // Row is used to place items horizontally
             Row(
@@ -61,7 +61,7 @@ fun BottomButtonScreen() {
                 onClick = { logged = false ; boolean = false ; ListViewModel.screenList = mutableListOf(0) ; ListViewModel.updateCurrentList(0) },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(90.dp),
+                    .height(50.dp),
                 shape = RectangleShape
             ) {
                 Text(stringResource(id = R.string.log_out))

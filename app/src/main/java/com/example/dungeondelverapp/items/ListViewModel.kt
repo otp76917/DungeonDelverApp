@@ -3,29 +3,28 @@ package com.example.dungeondelverapp.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.example.dungeondelverapp.MyApp
 import com.example.dungeondelverapp.R
-import com.example.dungeondelverapp.db.CharacterDB
+import com.example.dungeondelverapp.items.maps.allMaps
+import com.example.dungeondelverapp.utils.lists.ancestries.ancestriesList
 import com.example.dungeondelverapp.utils.lists.classes.artificer.artificerList
 import com.example.dungeondelverapp.utils.lists.classes.artificer.artificerSubclassList
 import com.example.dungeondelverapp.utils.lists.classes.artificer.artificerTraitList
-import com.example.dungeondelverapp.utils.lists.classes.artificer.subclasses.mechanicList
-import com.example.dungeondelverapp.utils.lists.classes.artificer.subclasses.mechanicTraitList
+import com.example.dungeondelverapp.utils.lists.classes.artificer.subclasses.mechanic.mechanicList
+import com.example.dungeondelverapp.utils.lists.classes.artificer.subclasses.mechanic.mechanicTraitList
 import com.example.dungeondelverapp.utils.lists.classes.barbarian.barbarianList
 import com.example.dungeondelverapp.utils.lists.classes.barbarian.barbarianSubclassList
 import com.example.dungeondelverapp.utils.lists.classes.barbarian.barbarianTraitList
-import com.example.dungeondelverapp.utils.lists.classes.barbarian.subclasses.wrestlerList
-import com.example.dungeondelverapp.utils.lists.classes.barbarian.subclasses.wrestlerTraitList
+import com.example.dungeondelverapp.utils.lists.classes.barbarian.subclasses.wrestler.wrestlerList
+import com.example.dungeondelverapp.utils.lists.classes.barbarian.subclasses.wrestler.wrestlerTraitList
 import com.example.dungeondelverapp.utils.lists.classes.bard.bardList
 import com.example.dungeondelverapp.utils.lists.classes.bard.bardTraitList
 import com.example.dungeondelverapp.utils.lists.classes.bastion.bastionList
 import com.example.dungeondelverapp.utils.lists.classes.bastion.bastionTraitList
 import com.example.dungeondelverapp.utils.lists.classes.classesList
 import com.example.dungeondelverapp.utils.mainList
-import com.example.dungeondelverapp.utils.myDashboardItems
-import com.example.dungeondelverapp.views.CharacterCard
 import com.example.dungeondelverapp.views.CharacterComponent
 import com.example.dungeondelverapp.views.MainList
 import com.example.dungeondelverapp.views.SquareTable
@@ -67,15 +66,6 @@ object ListViewModel : ViewModel() {
                     CharacterComponent()
             }
 
-            //Lists
-            R.string.classes -> MainList(classesList)
-
-            //Classes
-            R.string.artificer -> MainList(artificerList)
-            R.string.barbarian -> MainList(barbarianList)
-            R.string.bard -> MainList(bardList)
-            R.string.bastion -> MainList(bastionList)
-
             //Artificer subclasses
             (R.string.subclasses-R.string.artificer) -> MainList(artificerSubclassList)
             R.string.mechanic -> MainList(mechanicList)
@@ -90,26 +80,33 @@ object ListViewModel : ViewModel() {
             //Bastion subclasses
             (R.string.subclasses-R.string.bastion) -> MainList(bastionList)
 
-            //Error handler
-            else -> MainList(myDashboardItems)
+            else -> {
+                val targetedList = allMaps[currentList]
+                if (targetedList != null) {
+                    MainList(targetedList)
+                }
+                else {
+                    MainList(mainList)
+                }
+            }
         }
     }
 
-    fun listSelector(int: Int) : List<DashboardItem.CharacterTrait>
+    fun listSelector(string: String) : List<DashboardItem.CharacterTrait>
     {
-        when (int) {
+        when (string) {
 
             //Classes
-            R.string.artificer -> return artificerTraitList
-            R.string.barbarian -> return barbarianTraitList
-            R.string.bard -> return bardTraitList
-            R.string.bastion -> return bastionTraitList
+            MyApp.appContext.getString(R.string.artificer) -> return artificerTraitList
+            MyApp.appContext.getString(R.string.barbarian) -> return barbarianTraitList
+            MyApp.appContext.getString(R.string.bard) -> return bardTraitList
+            MyApp.appContext.getString(R.string.bastion) -> return bastionTraitList
 
             //Artificer subclasses
-            R.string.mechanic -> return mechanicTraitList
+            MyApp.appContext.getString(R.string.mechanic) -> return mechanicTraitList
 
             //Barbarian subclasses
-            R.string.wrestler -> return wrestlerTraitList
+            MyApp.appContext.getString(R.string.wrestler) -> return wrestlerTraitList
 
             //Bard subclasses
 

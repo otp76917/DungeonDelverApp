@@ -19,4 +19,22 @@
     <string name="done">Done</string>
     <string name="name">Name</string>
     <string name="log_out" translatable="false">Log out</string>
+    <string name="barbarian_rage_desc">At level 1, you gain the following traits while in combat:  · Add your PB to weapon damage relying on strength.  · At the beginning of your turn, gain your strength as temporary hit points.  · -2 to AC if you are wearing armor.</string>
+    <string name="barbarian_rage_name">Rage</string>
+    <string name="barbarian_hardskin_name">Hard Skin</string>
+    <string name="barbarian_hardskin_desc">At level 1, you can use one SP to gain resistance to non magical damage.</string>
+    <string name="artificer_craftsman_name">Caftsman</string>
+    <string name="artificer_craftsman_desc">At level 1, you get an extra ammount of proficiencies with tools equal to any mental stat of your choice.</string>
+    <string name="artificer_combatsmith_name">Combat Smith</string>
+    <string name="artificer_combatsmith_desc">At level 1, you have a table to aid you in combat. The table:\n · Can be placed as an action.\n · Counts as half cover.\n · Use one SP to change the damage type of a weapon, or up to 5 projectiles.</string>
+    <string name="monsters">Monsters</string>
+    <string name="spells">Spells</string>
+    <string name="illusion">Illusion</string>
+    <string name="brute">Brute</string>
+    <string name="species">Species</string>
+    <string name="full">Full</string>
+    <string name="half">Half</string>
+    <string name="curse">Curse</string>
+    <string name="heal">Heal</string>
+    <string name="stone">Stone</string>
 </resources>

@@ -14,13 +14,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.dungeondelverapp.MyApp
 import com.example.dungeondelverapp.R
 import com.example.dungeondelverapp.db.CharacterDB
 import com.example.dungeondelverapp.db.methods.ProfileViewModel
 import com.example.dungeondelverapp.db.methods.addCharacter
-import com.example.dungeondelverapp.db.methods.getAllCharacters
 import com.example.dungeondelverapp.items.CurrentSession
 import com.example.dungeondelverapp.items.ListViewModel
+import com.example.dungeondelverapp.views.character.data.mainClassOptions
+import com.example.dungeondelverapp.views.character.ui.characterDropDownMenu
 
 
 var characterToView by mutableStateOf(CharacterDB())
@@ -85,11 +87,11 @@ fun CharacterPage(character: CharacterDB) {
     val subclass = ListViewModel.listSelector(character.subclass)
     val background = ListViewModel.listSelector(character.background)
     val ancestry1 = ListViewModel.listSelector(character.ancestry1)
-    //val ancestry2 = ListViewModel.listSelector(character.ancestry2!!)
+    val ancestry2 = ListViewModel.listSelector(character.ancestry2!!)
     val species1 = ListViewModel.listSelector(character.species1)
-    //val species2 = ListViewModel.listSelector(character.species2!!)
+    val species2 = ListViewModel.listSelector(character.species2!!)
 
-    val traits = mainClass + subclass + background + ancestry1 + /*ancestry2 +*/ species1 /*+ species2*/
+    val traits = mainClass + subclass + background + ancestry1 + ancestry2 + species1 + species2
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -118,12 +120,10 @@ fun CharacterPage(character: CharacterDB) {
 @Composable
 fun CharacterCreator() {
 
-    var expanded by remember { mutableStateOf(false) }
     var nameInput by remember { mutableStateOf("") }
 
-    var selectedMainClass by remember { mutableIntStateOf(0) }
+    val selectedMainClass = remember { mutableStateOf("") }
 
-    val mainClassOptions = listOf(R.string.artificer, R.string.barbarian, R.string.bard,R.string.bastion)
     //subclass options for each class
 
     val backgroundOptions = listOf("TODO")
@@ -143,40 +143,16 @@ fun CharacterCreator() {
             label = { Text("Name") },
             modifier = Modifier.fillMaxWidth()
         )
-        ExposedDropdownMenuBox(
-            expanded = expanded,
-            onExpandedChange = { expanded = !expanded },
-            modifier = Modifier.padding(16.dp)
-        ) {
-            TextField(
-                value = if (selectedMainClass==0) stringResource(id = R.string.classes) else stringResource(id = selectedMainClass),
-                onValueChange = {},
-                readOnly = true,
-                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-                modifier = Modifier.menuAnchor()
-            )
-            ExposedDropdownMenu(
-                expanded = expanded,
-                onDismissRequest = { expanded = false }
-            ) {
-                mainClassOptions.forEach { option ->
-                    DropdownMenuItem(
-                        text = { Text(stringResource(id = option)) },
-                        onClick = {
-                            selectedMainClass = option
-                            expanded = false
-                        }
-                    )
-                }
-            }
-        }
+
+        selectedMainClass.value = characterDropDownMenu(R.string.classes, mainClassOptions).value
+
         Button(onClick = {
             val characterToSave = CharacterDB().apply {
                 name = nameInput
-                mainClass = selectedMainClass
+                mainClass = selectedMainClass.value
                 level = 1 // Default starting level
-                ancestry2 = 0
-                species2 = 0
+                ancestry1 = ""
+                species1 = ""
             }
             addCharacter(characterToSave)
             creating = false
@@ -194,7 +170,7 @@ fun CharacterCard(
     // State to keep track of the counter value
     var count by remember { mutableIntStateOf(character.level) }
     var characterName by remember { mutableStateOf(character.name) }
-    var characterClass by remember { mutableIntStateOf(character.mainClass) }
+    var characterClass by remember { mutableStateOf(character.mainClass) }
 
     ElevatedCard(
         onClick = { characterToView = character; viewing = true },
@@ -220,7 +196,7 @@ fun CharacterCard(
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = stringResource(id = if (characterClass==0) R.string.classes else characterClass),
+                    text = characterClass,
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

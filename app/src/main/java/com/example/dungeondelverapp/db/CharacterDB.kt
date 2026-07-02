@@ -10,19 +10,19 @@ data class CharacterDB(
     @Id var id: Long = 0,
     var name: String,
     var level: Int,
-    var mainClass: Int,
-    var subclass: Int,
-    var background: Int,
-    var ancestry1: Int,
-    var ancestry2: Int?,
-    var species1: Int,
-    var species2: Int?,
+    var mainClass: String,
+    var subclass: String,
+    var background: String,
+    var ancestry1: String,
+    var ancestry2: String,
+    var species1: String,
+    var species2: String,
 ) {
     lateinit var profile: ToOne<Profile>
 
-    constructor() : this(0, "", 0, 0, 0, 0, 0, null, 0, null)
+    constructor() : this(0, "", 0, "", "", "", "", "", "", "")
 
-    constructor(name: String, classId: Int, level: Int) : this(0, name, 0, 0, 0, 0, 0, null, 0, null)
+    constructor(name: String, mainClass: String, level: Int) : this(0, name, level, mainClass, "", "", "", "", "", "")
 
 
 }

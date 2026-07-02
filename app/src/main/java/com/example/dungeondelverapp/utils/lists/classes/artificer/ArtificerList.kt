@@ -4,13 +4,15 @@ import com.example.dungeondelverapp.MyApp
 import com.example.dungeondelverapp.R
 import com.example.dungeondelverapp.items.DashboardItem
 import com.example.dungeondelverapp.items.ListViewModel
+import com.example.dungeondelverapp.utils.renderString
 
 
 val artificerHeader = listOf(DashboardItem.Header(MyApp.appContext.getString(R.string.artificer).uppercase()))
 
 val artificerTraitList = listOf(
 
-    DashboardItem.CharacterTrait("Test Trait", "Test Description",0)
+    DashboardItem.CharacterTrait(renderString(R.string.artificer_craftsman_name), renderString(R.string.artificer_craftsman_desc), 1),
+    DashboardItem.CharacterTrait(renderString(R.string.artificer_combatsmith_name), renderString(R.string.artificer_combatsmith_desc), 1),
 
 )
 

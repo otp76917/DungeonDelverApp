@@ -4,14 +4,15 @@ import com.example.dungeondelverapp.MyApp
 import com.example.dungeondelverapp.R
 import com.example.dungeondelverapp.items.DashboardItem
 import com.example.dungeondelverapp.items.ListViewModel
+import com.example.dungeondelverapp.utils.renderString
 
 
 val barbarianHeader = listOf(DashboardItem.Header(MyApp.appContext.getString(R.string.barbarian).uppercase()))
 
 val barbarianTraitList = listOf(
 
-    DashboardItem.CharacterTrait("Hit Die", "12", 0),
-    DashboardItem.CharacterTrait("Speed", "30", 0)
+    DashboardItem.CharacterTrait(renderString(R.string.barbarian_rage_name), renderString(R.string.barbarian_rage_desc), 1),
+    DashboardItem.CharacterTrait(renderString(R.string.barbarian_hardskin_name), renderString(R.string.barbarian_hardskin_desc), 1),
 
 )
 

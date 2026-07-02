@@ -1,4 +1,4 @@
-package com.example.dungeondelverapp.utils.lists.classes.barbarian.subclasses
+package com.example.dungeondelverapp.utils.lists.classes.barbarian.subclasses.wrestler
 
 import com.example.dungeondelverapp.MyApp
 import com.example.dungeondelverapp.R

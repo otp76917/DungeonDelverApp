@@ -41,17 +41,30 @@ val mainList = listOf(
 
     DashboardItem.ActionButton(
         label = MyApp.appContext.getString(R.string.ancestries),
-        onClick = {  }
+        onClick = { ListViewModel.updateCurrentList(R.string.ancestries) }
     ),
 
     DashboardItem.ActionButton(
         label = MyApp.appContext.getString(R.string.backgrounds),
-        onClick = {  }
+        onClick = { ListViewModel.updateCurrentList(R.string.backgrounds) }
     ),
 
     DashboardItem.ActionButton(
         label = MyApp.appContext.getString(R.string.items),
-        onClick = {  }
+        onClick = { ListViewModel.updateCurrentList(R.string.items) }
+    ),
+
+    DashboardItem.ActionButton(
+        label = MyApp.appContext.getString(R.string.spells),
+        onClick = { ListViewModel.updateCurrentList(R.string.spells) }
     ),
 
 )
+
+fun renderString(id: Int): String {
+    return MyApp.appContext.getString(id)
+}
+
+fun reloadList() {
+    ListViewModel.updateCurrentList(ListViewModel.currentList)
+}

@@ -1,4 +1,4 @@
-package com.example.dungeondelverapp.utils.lists.classes.artificer.subclasses
+package com.example.dungeondelverapp.utils.lists.classes.artificer.subclasses.mechanic
 
 import com.example.dungeondelverapp.MyApp
 import com.example.dungeondelverapp.R

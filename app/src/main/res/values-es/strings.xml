@@ -18,4 +18,22 @@
     <string name="create_character">Crear Personaje</string>
     <string name="done">Hecho</string>
     <string name="name">Nombre</string>
+    <string name="barbarian_rage_desc">Al nivel 1, ganas los siguientes beneficios en combate:\n · Añade tu proeficiencia al daño de armas que utilicen fuerza.\n · Al principio de tu turno, gana tu fuerza como vida temporal.\n · -2 al AC si llevas armadura.</string>
+    <string name="barbarian_rage_name">Furia</string>
+    <string name="barbarian_hardskin_name">Piel Dura</string>
+    <string name="barbarian_hardskin_desc">Al nivel 1, puedes usar un SP para ganar resistencia al daño no mágico.</string>
+    <string name="artificer_craftsman_name">Artesano</string>
+    <string name="artificer_craftsman_desc">Al nivel 1, consigues una cantidad de proeficiencias con herramientas igual a una estadística mental a tu elección.</string>
+    <string name="artificer_combatsmith_name">Herrero de Combate</string>
+    <string name="artificer_combatsmith_desc">Al nivel 1, tienes una mesa para ayudarte en combate. La mesa:\n · Puede ser puesta como acción.\n · Cuenta como media cobertura.\n · Usa un SP para cambiar el tipo de daño de un arma, o hasta 5 proyectiles.</string>
+    <string name="monsters">Monstruos</string>
+    <string name="spells">Hechizos</string>
+    <string name="illusion">Ilusión</string>
+    <string name="brute">Bruto</string>
+    <string name="species">Especies</string>
+    <string name="full">Entero</string>
+    <string name="half">Mitad</string>
+    <string name="curse">Maldición</string>
+    <string name="heal">Curar</string>
+    <string name="stone">Piedra</string>
 </resources>
