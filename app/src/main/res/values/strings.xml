@@ -37,4 +37,9 @@
     <string name="curse">Curse</string>
     <string name="heal">Heal</string>
     <string name="stone">Stone</string>
+    <string name="cancel">Cancel</string>
+    <string name="chef">Chef</string>
+    <string name="flagellant">Flagellant</string>
+    <string name="bastion_sacrifice_name">Sacrifice</string>
+    <string name="bastion_sacrifice_desc">At level 1, you don\'t have an MP pool. Instead, you use 5 hit points per MP. Additionally, you can\'t heal yourself with your own magic.</string>
 </resources>

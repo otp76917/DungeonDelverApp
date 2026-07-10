@@ -16,6 +16,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import com.example.dungeondelverapp.items.DashboardItem
@@ -64,9 +65,10 @@ fun ProfileView(item: DashboardItem.UserProfile) {
 fun SpellView(item: DashboardItem.Spell) {
     Card(elevation = CardDefaults.cardElevation(), modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(text = item.name, style = MaterialTheme.typography.titleLarge)
+            Text(text = item.name, style = MaterialTheme.typography.titleLarge, color = Color.White)
             for (option in item.options) {
-                Text(text = "AP: ${option.ap}, MP: ${option.mp}:\n ${option.description}")
+                Text(text = "AP: ${option.ap}, MP: ${option.mp}:", color = Color.White)
+                Text(option.description)
             }
         }
     }

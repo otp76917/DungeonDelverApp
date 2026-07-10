@@ -23,4 +23,4 @@ val subclassButton = listOf(
 
 )
 
-val bardList = bardHeader + bardTraitList + subclassButton
+val bardList = bardHeader + bardTraitList.sortedBy { it.level } + subclassButton

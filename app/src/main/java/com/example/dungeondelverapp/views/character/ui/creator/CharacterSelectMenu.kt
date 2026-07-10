@@ -1,4 +1,4 @@
-package com.example.dungeondelverapp.views.character.ui
+package com.example.dungeondelverapp.views.character.ui.creator
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DropdownMenuItem
@@ -8,7 +8,6 @@ import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -16,18 +15,18 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.example.dungeondelverapp.MyApp
+import com.example.dungeondelverapp.utils.renderString
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun characterDropDownMenu(
+fun CharacterDropDownMenu(
     identifier: Int,
     list: List<Int>,
-) : MutableState<String>
+    selectedOption: String,
+    onValueChange: (String) -> Unit,
+)
 {
     var expanded by remember { mutableStateOf(false) }
-    var displayText by remember { mutableStateOf(MyApp.appContext.getString(identifier)) }
-    val selectedObject = remember { mutableStateOf("") }
 
     ExposedDropdownMenuBox(
         expanded = expanded,
@@ -35,7 +34,7 @@ fun characterDropDownMenu(
         modifier = Modifier.padding(16.dp)
     ) {
         TextField(
-            value = displayText,
+            value = (if (selectedOption == "") renderString(identifier) else selectedOption),
             onValueChange = {},
             readOnly = true,
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
@@ -49,13 +48,11 @@ fun characterDropDownMenu(
                 DropdownMenuItem(
                     text = { Text(stringResource(id = option)) },
                     onClick = {
-                        selectedObject.value = MyApp.appContext.getString(option)
-                        displayText = MyApp.appContext.getString(option)
                         expanded = false
+                        onValueChange(renderString(option))
                     }
                 )
             }
         }
     }
-    return selectedObject
 }

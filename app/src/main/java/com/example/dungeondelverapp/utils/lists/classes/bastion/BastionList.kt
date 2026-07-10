@@ -4,13 +4,14 @@ import com.example.dungeondelverapp.MyApp
 import com.example.dungeondelverapp.R
 import com.example.dungeondelverapp.items.DashboardItem
 import com.example.dungeondelverapp.items.ListViewModel
+import com.example.dungeondelverapp.utils.renderString
 
 
 val bastionHeader = listOf(DashboardItem.Header(MyApp.appContext.getString(R.string.bastion).uppercase()))
 
 val bastionTraitList = listOf(
 
-    DashboardItem.CharacterTrait("Test Trait", "Test Description",0)
+    DashboardItem.CharacterTrait(renderString(R.string.bastion_sacrifice_name), renderString(R.string.bastion_sacrifice_desc),1),
 
 )
 

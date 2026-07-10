@@ -10,13 +10,26 @@ val mainClassOptions = listOf(
     R.string.bastion
 )
 
-fun subClassOptions (string: String) {
+val artificerOptions = listOf(
 
-    when (string) {
-        MyApp.appContext.getString(R.string.artificer) -> listOf(R.string.mechanic)
-        MyApp.appContext.getString(R.string.barbarian) -> listOf(R.string.wrestler)
-        MyApp.appContext.getString(R.string.bard) -> listOf(R.string.bard)
-        MyApp.appContext.getString(R.string.bastion) -> listOf(R.string.bastion)
-    }
+    R.string.mechanic
 
-}
+)
+
+val barbarianOptions = listOf(
+
+    R.string.wrestler
+
+)
+
+val bardOptions = listOf(
+
+    R.string.chef
+
+)
+
+val bastionOptions = listOf(
+
+    R.string.flagellant
+
+)

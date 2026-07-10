@@ -36,4 +36,9 @@
     <string name="curse">Maldición</string>
     <string name="heal">Curar</string>
     <string name="stone">Piedra</string>
+    <string name="cancel">Cancelar</string>
+    <string name="chef">Chef</string>
+    <string name="flagellant">Flagelante</string>
+    <string name="bastion_sacrifice_name">Sacrificio</string>
+    <string name="bastion_sacrifice_desc">Al nivel 1, no tienes reserva de MP. En cambio, utilizas 5 de vida por punto de magia. Adicionalmente, no puedes curarte a ti mismo usando tu magia.</string>
 </resources>
